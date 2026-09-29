@@ -1,1667 +1,3613 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Elise & Sadık — 19.12.2026</title>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap');
-
-    :root {
-      --wine: #390008;
-      --wine2: #51000c;
-      --wine3: #650013;
-      --gold: #c9a45c;
-      --gold-light: #e5ca8e;
-      --cream: #f8f4ee;
-      --paper: #fffdf9;
-      --text: #3a2626;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-    }
-
-    button,
-    input,
-    textarea {
-      font-family: inherit;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    /* INTRO */
-
-    .intro {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(201,164,92,.11), transparent 32%),
-        linear-gradient(145deg, #51000c, #260004);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .intro.fade-away {
-      opacity: 0;
-      transform: scale(1.06);
-    }
-
-    .intro-content {
-      position: relative;
-      z-index: 3;
-      padding: 35px 20px;
-    }
-
-    .wedding-small-date {
-      color: var(--gold-light);
-      font-size: 11px;
-      letter-spacing: 7px;
-      margin-bottom: 25px;
-    }
-
-    .intro h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(65px, 11vw, 115px);
-      line-height: .78;
-      font-weight: 400;
-    }
-
-    .intro h1 span {
-      display: block;
-      color: var(--gold);
-      font-size: .58em;
-      font-style: italic;
-      margin: 12px 0;
-    }
-
-    .intro-welcome {
-      margin-top: 30px;
-      color: var(--gold-light);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 25px;
-      font-style: italic;
-    }
-
-    .choose-language {
-      margin-top: 31px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 8px;
-      opacity: .6;
-    }
-
-    .languages {
-      display: flex;
-      justify-content: center;
-      gap: 9px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
-
-    .language {
-      width: 47px;
-      height: 51px;
-      border-radius: 8px;
-      border: 1px solid rgba(201,164,92,.22);
-      background: rgba(255,255,255,.035);
-      color: white;
-      cursor: pointer;
-      font-size: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: .25s;
-    }
-
-    .language span {
-      font-size: 7px;
-      letter-spacing: 1px;
-      margin-top: 2px;
-      opacity: .55;
-    }
-
-    .language:hover,
-    .language.active {
-      border-color: var(--gold);
-      background: rgba(201,164,92,.11);
-      transform: translateY(-3px);
-    }
-
-    /* COUPLE */
-
-    .couple-zone {
-      margin-top: 30px;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .couple {
-      width: 180px;
-      height: 165px;
-      margin: auto;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 3px;
-      transform-origin: center bottom;
-    }
-
-    .person {
-      position: relative;
-      width: 69px;
-      height: 145px;
-    }
-
-    .head {
-      width: 36px;
-      height: 40px;
-      background: #e7b997;
-      border-radius: 48% 48% 45% 45%;
-      position: absolute;
-      top: 5px;
-      left: 17px;
-      z-index: 5;
-    }
-
-    .bride-hair {
-      width: 39px;
-      height: 24px;
-      background: #5a3429;
-      border-radius: 50% 50% 20% 20%;
-      position: absolute;
-      top: -3px;
-      left: -2px;
-    }
-
-    .bride-body {
-      position: absolute;
-      top: 40px;
-      left: 9px;
-      width: 53px;
-      height: 100px;
-    }
-
-    .bride-dress {
-      position: absolute;
-      width: 60px;
-      height: 94px;
-      bottom: 0;
-      left: -4px;
-      background: linear-gradient(to bottom, #ffffff, #ebe6df);
-      clip-path: polygon(37% 0, 63% 0, 100% 100%, 0 100%);
-      filter: drop-shadow(0 7px 8px rgba(0,0,0,.2));
-    }
-
-    .veil {
-      width: 65px;
-      height: 95px;
-      position: absolute;
-      top: 20px;
-      left: 7px;
-      border-radius: 50%;
-      border-left: 1px solid rgba(255,255,255,.7);
-      transform: rotate(9deg);
-    }
-
-    .groom-hair {
-      width: 38px;
-      height: 17px;
-      background: #291d19;
-      border-radius: 50% 50% 15% 15%;
-      position: absolute;
-      top: -3px;
-      left: -1px;
-    }
-
-    .groom-body {
-      width: 51px;
-      height: 100px;
-      background: linear-gradient(#202020, #090909);
-      position: absolute;
-      top: 42px;
-      left: 10px;
-      border-radius: 7px 7px 3px 3px;
-      filter: drop-shadow(0 7px 8px rgba(0,0,0,.25));
-    }
-
-    .shirt {
-      width: 17px;
-      height: 39px;
-      position: absolute;
-      top: 0;
-      left: 17px;
-      background: white;
-      clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
-    }
-
-    .bowtie {
-      color: var(--wine3);
-      position: absolute;
-      top: 9px;
-      left: 20px;
-      font-size: 11px;
-      z-index: 4;
-    }
-
-    .heart-between {
-      color: var(--gold);
-      font-size: 17px;
-      position: absolute;
-      top: 53px;
-      left: 82px;
-      z-index: 12;
-      animation: heartbeat 1.7s infinite;
-    }
-
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.24);
-      }
-    }
-
-    .enter-text {
-      color: rgba(255,255,255,.72);
-      margin-top: 13px;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .couple.dancing {
-      animation: weddingDance 1.65s ease-in-out;
-    }
-
-    @keyframes weddingDance {
-      0% {
-        transform: rotate(0) translateX(0);
-      }
-
-      15% {
-        transform: rotate(-7deg) translateX(-7px);
-      }
-
-      30% {
-        transform: rotate(7deg) translateX(8px) translateY(-5px);
-      }
-
-      45% {
-        transform: rotate(-9deg) translateX(-8px);
-      }
-
-      60% {
-        transform: rotate(8deg) translateX(8px) translateY(-7px);
-      }
-
-      75% {
-        transform: rotate(-6deg) translateX(-6px);
-      }
-
-      100% {
-        transform: rotate(0) translateX(0);
-      }
-    }
-
-    /* SITE */
-
-    .website.visible {
-      display: block;
-      animation: websiteAppear 1.1s ease;
-    }
-
-    @keyframes websiteAppear {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .navbar {
-      min-height: 72px;
-      padding: 12px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(248,244,238,.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,164,92,.19);
-    }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--wine2);
-      font-size: 28px;
-      text-decoration: none;
-    }
-
-    .nav-logo span {
-      color: var(--gold);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-    }
-
-    .nav-links a {
-      color: #493131;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 9px;
-    }
-
-    .mini-languages {
-      display: flex;
-    }
-
-    .mini-languages button {
-      border: 0;
-      background: transparent;
-      font-size: 18px;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    /* HOME */
-
-    .home-section {
-      min-height: calc(100vh - 72px);
-      padding: 70px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      background:
-        radial-gradient(circle at 50% 45%, rgba(201,164,92,.10), transparent 35%),
-        linear-gradient(155deg, #53000c, #270004);
-    }
-
-    .home-decoration {
-      color: var(--gold);
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .little-title {
-      text-transform: uppercase;
-      letter-spacing: 6px;
-      font-size: 9px;
-      opacity: .65;
-    }
-
-    .home-section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(70px, 12vw, 130px);
-      font-weight: 400;
-      line-height: .72;
-      margin-top: 30px;
-    }
-
-    .home-section h2 span {
-      display: block;
-      color: var(--gold);
-      font-size: .57em;
-      font-style: italic;
-      margin: 15px 0;
-    }
-
-    .home-date {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--gold-light);
-      font-size: 25px;
-      font-style: italic;
-      margin-top: 37px;
-    }
-
-    .gold-separator {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: var(--gold);
-      margin: 26px auto;
-    }
-
-    .gold-separator span {
-      display: block;
-      width: 55px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold));
-    }
-
-    .gold-separator span:last-child {
-      transform: scaleX(-1);
-    }
-
-    /* COUNTDOWN */
-
-    .countdown {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 15px;
-    }
-
-    .count-box {
-      min-width: 91px;
-      padding: 17px 12px;
-      border: 1px solid rgba(201,164,92,.19);
-      background: rgba(255,255,255,.025);
-    }
-
-    .count-box strong {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 44px;
-      font-weight: 400;
-    }
-
-    .count-box span {
-      font-size: 7px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: .6;
-    }
-
-    .discover {
-      color: var(--gold);
-      text-decoration: none;
-      margin-top: 40px;
-      font-size: 24px;
-    }
-
-    /* SECTIONS */
-
-    .section {
-      padding: 110px 8%;
-      text-align: center;
-    }
-
-    .section-small {
-      color: var(--wine3);
-      font-size: 8px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section h3,
-    .address-section h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 8vw, 70px);
-      font-weight: 400;
-    }
-
-    /* PROGRAMME */
-
-    .programme-section {
-      background: var(--cream);
-    }
-
-    .timeline {
-      max-width: 780px;
-      margin: 60px auto 0;
-      position: relative;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 118px;
-      top: 12px;
-      bottom: 12px;
-      width: 1px;
-      background: rgba(201,164,92,.45);
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 95px 46px 1fr;
-      align-items: center;
-      text-align: left;
-      min-height: 140px;
-    }
-
-    .time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      color: var(--wine2);
-      text-align: right;
-    }
-
-    .timeline-dot {
-      width: 27px;
-      height: 27px;
-      margin: auto;
-      position: relative;
-      z-index: 2;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      color: var(--wine2);
-      background: var(--cream);
-      border: 1px solid var(--gold);
-    }
-
-    .timeline-content {
-      background: white;
-      padding: 24px 28px;
-      box-shadow: 0 10px 30px rgba(60,0,0,.04);
-    }
-
-    .timeline-content h4 {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--wine2);
-      font-size: 29px;
-      font-weight: 500;
-    }
-
-    .timeline-content p {
-      margin-top: 6px;
-      line-height: 1.7;
-      font-size: 12px;
-      opacity: .67;
-    }
-
-    /* ADDRESS */
-
-    .address-section {
-      background: linear-gradient(150deg, #4a000a, #250003);
-      color: white;
-      text-align: center;
-      padding: 110px 20px;
-    }
-
-    .gold {
-      color: var(--gold);
-    }
-
-    .address-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      line-height: 1.6;
-      opacity: .8;
-    }
-
-    .gold-button {
-      display: inline-block;
-      margin-top: 32px;
-      padding: 14px 27px;
-      color: var(--gold-light);
-      border: 1px solid var(--gold);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 8px;
-    }
-
-    /* GUESTBOOK */
-
-    .guestbook-section {
-      overflow: hidden;
-    }
-
-    .guestbook-description {
-      margin-top: 14px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 20px;
-      opacity: .7;
-    }
-
-    .envelope-wrapper {
-      margin: 80px auto 20px;
-      min-height: 400px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .envelope {
-      width: 430px;
-      height: 270px;
-      position: relative;
-      margin-top: 90px;
-      perspective: 1000px;
-    }
-
-    .envelope-back {
-      position: absolute;
-      inset: 0;
-      background: #e9dfd2;
-      box-shadow: 0 25px 50px rgba(60,20,20,.12);
-    }
-
-    .letter {
-      width: 370px;
-      min-height: 310px;
-      position: absolute;
-      left: 30px;
-      bottom: 45px;
-      z-index: 2;
-      background: var(--paper);
-      padding: 32px 28px;
-      box-shadow: 0 8px 22px rgba(0,0,0,.08);
-      transition: transform 1s ease, opacity .7s ease;
-    }
-
-    .letter::before {
-      content: "Elise ♥ Sadık";
-      display: block;
-      margin-bottom: 20px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 25px;
-      color: var(--wine2);
-    }
-
-    .letter input,
-    .letter textarea {
-      width: 100%;
-      padding: 13px;
-      margin-bottom: 10px;
-      border: 1px solid #ded5ca;
-      outline: none;
-      background: #fffefa;
-    }
-
-    .letter textarea {
-      min-height: 105px;
-      resize: vertical;
-    }
-
-    .envelope-left,
-    .envelope-right,
-    .envelope-bottom {
-      position: absolute;
-      inset: 0;
-      z-index: 4;
-      pointer-events: none;
-    }
-
-    .envelope-left {
-      background: #e4d7c6;
-      clip-path: polygon(0 0, 55% 50%, 0 100%);
-    }
-
-    .envelope-right {
-      background: #efe6da;
-      clip-path: polygon(100% 0, 45% 50%, 100% 100%);
-    }
-
-    .envelope-bottom {
-      background: #e9ddcf;
-      clip-path: polygon(0 100%, 50% 43%, 100% 100%);
-    }
-
-    .envelope-flap {
-      position: absolute;
-      inset: 0;
-      z-index: 5;
-      background: #f1e8dc;
-      clip-path: polygon(0 0, 100% 0, 50% 55%);
-      transform-origin: center top;
-      transform: rotateX(180deg);
-      transition: transform .9s ease;
-    }
-
-    .wax-seal {
-      width: 49px;
-      height: 49px;
-      position: absolute;
-      z-index: 8;
-      left: calc(50% - 24px);
-      top: 113px;
-      border-radius: 50%;
-      color: var(--gold-light);
-      background: radial-gradient(circle at 35% 30%, #800016, #52000b);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      opacity: 0;
-      transform: scale(.4);
-      transition: .7s ease;
-    }
-
-    .envelope.sending .letter {
-      transform: translateY(185px);
-      opacity: .75;
-    }
-
-    .envelope.sending .envelope-flap {
-      transform: rotateX(0deg);
-    }
-
-    .envelope.sending .wax-seal {
-      opacity: 1;
-      transform: scale(1);
-      transition-delay: .75s;
-    }
-
-    .outside-button {
-      display: block;
-      margin: 25px auto 0;
-      padding: 15px 32px;
-      background: var(--wine2);
-      color: var(--gold-light);
-      border: 1px solid var(--gold);
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 10px;
-      position: relative;
-      z-index: 20;
-    }
-
-    .send-confirmation {
-      color: var(--wine2);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-      margin-top: 22px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: .6s;
-    }
-
-    .send-confirmation.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer {
-      padding: 60px 20px;
-      text-align: center;
-      background: #250003;
-      color: white;
-    }
-
-    footer p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
-    }
-
-    footer p span {
-      color: var(--gold);
-    }
-
-    footer small {
-      display: block;
-      margin-top: 7px;
-      letter-spacing: 4px;
-      color: rgba(255,255,255,.45);
-      font-size: 8px;
-    }
-
-    @media(max-width: 750px) {
-      .nav-links {
-        display: none;
-      }
-
-      .navbar {
-        padding: 10px 15px;
-      }
-
-      .mini-languages button {
-        font-size: 15px;
-      }
-
-      .count-box {
-        min-width: 70px;
-        padding: 13px 8px;
-      }
-
-      .count-box strong {
-        font-size: 35px;
-      }
-
-      .timeline::before {
-        left: 78px;
-      }
-
-      .timeline-item {
-        grid-template-columns: 62px 32px 1fr;
-      }
-
-      .time {
-        font-size: 21px;
-      }
-
-      .timeline-content {
-        padding: 19px 16px;
-      }
-
-      .timeline-content h4 {
-        font-size: 23px;
-      }
-
-      .envelope {
-        width: 330px;
-        height: 220px;
-      }
-
-      .letter {
-        width: 286px;
-        left: 22px;
-        padding: 25px 20px;
-      }
-
-      .wax-seal {
-        top: 89px;
-      }
-
-      .section {
-        padding: 85px 18px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Elise & Sadık — 19.12.2026</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root{
+  --wine:#360006;
+  --wine2:#50000b;
+  --wine3:#6b0012;
+
+  --gold:#c9a45c;
+  --gold-light:#e7cd92;
+
+  --cream:#f8f4ed;
+  --paper:#fffdf8;
+  --text:#382626;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+
+button,
+input,
+textarea{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none !important;
+}
+
+
+/* ================================
+   INTRO
+================================ */
+
+.intro{
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  position:relative;
+  overflow:hidden;
+
+  color:white;
+
+  background:
+    radial-gradient(circle at 50% 25%,rgba(201,164,92,.10),transparent 30%),
+    linear-gradient(145deg,#51000c,#250003);
+
+  transition:
+    opacity .9s ease,
+    transform .9s ease;
+}
+
+.intro::before,
+.intro::after{
+  content:"";
+
+  position:absolute;
+
+  border:1px solid rgba(201,164,92,.08);
+
+  border-radius:50%;
+}
+
+.intro::before{
+  width:420px;
+  height:420px;
+
+  top:-250px;
+  right:-160px;
+}
+
+.intro::after{
+  width:350px;
+  height:350px;
+
+  bottom:-220px;
+  left:-140px;
+}
+
+.intro.fade-away{
+  opacity:0;
+  transform:scale(1.07);
+}
+
+.intro-content{
+  position:relative;
+  z-index:5;
+
+  width:min(95%,750px);
+
+  padding:40px 20px;
+}
+
+.intro-date{
+  color:var(--gold-light);
+
+  font-size:11px;
+
+  letter-spacing:7px;
+
+  margin-bottom:24px;
+}
+
+.intro h1{
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:clamp(65px,12vw,120px);
+
+  font-weight:400;
+
+  line-height:.8;
+}
+
+.intro h1 span{
+  display:block;
+
+  color:var(--gold);
+
+  font-size:.55em;
+
+  font-style:italic;
+
+  margin:12px 0;
+}
+
+.intro-welcome{
+  margin-top:30px;
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:28px;
+
+  font-style:italic;
+}
+
+.language-title{
+  margin-top:30px;
+
+  font-size:8px;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+
+  opacity:.55;
+}
+
+
+/* ================================
+   LANGUES
+================================ */
+
+.languages{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:13px;
+}
+
+.language{
+  width:51px;
+  height:54px;
+
+  border-radius:9px;
+
+  border:1px solid rgba(201,164,92,.25);
+
+  background:rgba(255,255,255,.035);
+
+  color:white;
+
+  font-size:21px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  transition:.25s;
+}
+
+.language span{
+  font-size:7px;
+
+  margin-top:2px;
+
+  letter-spacing:1px;
+
+  opacity:.55;
+}
+
+.language:hover,
+.language.active{
+  border-color:var(--gold);
+
+  background:rgba(201,164,92,.12);
+
+  transform:translateY(-3px);
+}
+
+
+/* ================================
+   COUPLE
+================================ */
+
+.couple-zone{
+  display:inline-block;
+
+  margin-top:31px;
+
+  cursor:pointer;
+}
+
+.couple{
+  width:190px;
+  height:170px;
+
+  margin:auto;
+
+  position:relative;
+
+  display:flex;
+
+  align-items:flex-end;
+  justify-content:center;
+
+  transform-origin:center bottom;
+}
+
+.person{
+  position:relative;
+
+  width:72px;
+  height:150px;
+}
+
+.head{
+  width:37px;
+  height:40px;
+
+  position:absolute;
+
+  top:6px;
+  left:17px;
+
+  z-index:6;
+
+  background:#e7b997;
+
+  border-radius:48% 48% 44% 44%;
+}
+
+
+/* mariée */
+
+.bride-hair{
+  width:40px;
+  height:25px;
+
+  position:absolute;
+
+  left:-2px;
+  top:-3px;
+
+  border-radius:50% 50% 20% 20%;
+
+  background:#503029;
+}
+
+.bride-body{
+  width:53px;
+  height:102px;
+
+  position:absolute;
+
+  left:9px;
+  top:41px;
+}
+
+.bride-dress{
+  width:64px;
+  height:99px;
+
+  position:absolute;
+
+  bottom:0;
+  left:-5px;
+
+  background:
+    linear-gradient(#fff,#ebe5dc);
+
+  clip-path:
+    polygon(
+      38% 0,
+      62% 0,
+      100% 100%,
+      0 100%
+    );
+
+  filter:drop-shadow(0 7px 8px rgba(0,0,0,.17));
+}
+
+.veil{
+  width:68px;
+  height:102px;
+
+  position:absolute;
+
+  top:20px;
+  left:5px;
+
+  border-left:1px solid rgba(255,255,255,.75);
+
+  border-radius:50%;
+
+  transform:rotate(8deg);
+}
+
+
+/* marié */
+
+.groom-hair{
+  width:38px;
+  height:17px;
+
+  position:absolute;
+
+  top:-3px;
+  left:-1px;
+
+  background:#241918;
+
+  border-radius:50% 50% 15% 15%;
+}
+
+.groom-body{
+  width:52px;
+  height:102px;
+
+  position:absolute;
+
+  top:43px;
+  left:10px;
+
+  background:
+    linear-gradient(#242424,#080808);
+
+  border-radius:7px 7px 3px 3px;
+
+  filter:drop-shadow(0 7px 8px rgba(0,0,0,.22));
+}
+
+.shirt{
+  width:17px;
+  height:38px;
+
+  position:absolute;
+
+  top:0;
+  left:18px;
+
+  background:white;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      75% 100%,
+      25% 100%
+    );
+}
+
+.bowtie{
+  position:absolute;
+
+  top:9px;
+  left:21px;
+
+  color:#670010;
+
+  font-size:11px;
+}
+
+.couple-heart{
+  position:absolute;
+
+  z-index:20;
+
+  top:52px;
+  left:86px;
+
+  color:var(--gold);
+
+  font-size:17px;
+
+  animation:heartBeat 1.6s infinite;
+}
+
+@keyframes heartBeat{
+  50%{
+    transform:scale(1.3);
+  }
+}
+
+.enter-text{
+  margin-top:13px;
+
+  color:rgba(255,255,255,.75);
+
+  font-size:9px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+.couple.dancing{
+  animation:weddingDance 1.7s ease;
+}
+
+@keyframes weddingDance{
+
+  0%{
+    transform:rotate(0);
+  }
+
+  15%{
+    transform:
+      translateX(-8px)
+      rotate(-8deg);
+  }
+
+  30%{
+    transform:
+      translate(9px,-6px)
+      rotate(8deg);
+  }
+
+  45%{
+    transform:
+      translateX(-7px)
+      rotate(-7deg);
+  }
+
+  60%{
+    transform:
+      translate(8px,-8px)
+      rotate(9deg);
+  }
+
+  78%{
+    transform:
+      translateX(-5px)
+      rotate(-5deg);
+  }
+
+  100%{
+    transform:rotate(0);
+  }
+
+}
+
+
+/* ================================
+   CONFETTIS
+================================ */
+
+.confetti{
+  position:fixed;
+
+  width:6px;
+  height:10px;
+
+  top:-20px;
+
+  z-index:99999;
+
+  background:var(--gold);
+
+  pointer-events:none;
+
+  animation:fallConfetti 2.5s linear forwards;
+}
+
+@keyframes fallConfetti{
+
+  to{
+    transform:
+      translateY(110vh)
+      rotate(500deg);
+
+    opacity:0;
+  }
+
+}
+
+
+/* ================================
+   NAV
+================================ */
+
+.navbar{
+  position:sticky;
+
+  top:0;
+
+  z-index:1000;
+
+  min-height:72px;
+
+  padding:12px 5%;
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(248,244,237,.96);
+
+  backdrop-filter:blur(12px);
+
+  border-bottom:1px solid rgba(201,164,92,.2);
+}
+
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:31px;
+
+  text-decoration:none;
+
+  color:var(--wine2);
+}
+
+.nav-logo span{
+  color:var(--gold);
+}
+
+.nav-links{
+  display:flex;
+
+  gap:27px;
+}
+
+.nav-links a{
+  color:#493131;
+
+  text-decoration:none;
+
+  text-transform:uppercase;
+
+  letter-spacing:1.5px;
+
+  font-size:9px;
+}
+
+.nav-languages{
+  display:flex;
+}
+
+.nav-languages button{
+  border:0;
+
+  background:transparent;
+
+  font-size:18px;
+
+  padding:4px;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero{
+  min-height:calc(100vh - 72px);
+
+  padding:70px 18px;
+
+  display:flex;
+
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  color:white;
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at center,rgba(201,164,92,.11),transparent 35%),
+    linear-gradient(155deg,#52000c,#250003);
+}
+
+.hero-small{
+  font-size:9px;
+
+  letter-spacing:6px;
+
+  text-transform:uppercase;
+
+  opacity:.7;
+}
+
+.hero h2{
+  margin-top:30px;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:clamp(72px,13vw,135px);
+
+  font-weight:400;
+
+  line-height:.72;
+}
+
+.hero h2 span{
+  display:block;
+
+  margin:15px 0;
+
+  color:var(--gold);
+
+  font-size:.55em;
+
+  font-style:italic;
+}
+
+.hero-date{
+  margin-top:35px;
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:26px;
+
+  font-style:italic;
+}
+
+.gold-separator{
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:13px;
+
+  margin:25px auto;
+
+  color:var(--gold);
+}
+
+.gold-separator span{
+  width:55px;
+  height:1px;
+
+  display:block;
+
+  background:
+    linear-gradient(to right,transparent,var(--gold));
+}
+
+.gold-separator span:last-child{
+  transform:scaleX(-1);
+}
+
+
+/* ================================
+   VINYLE
+================================ */
+
+.vinyl-area{
+  margin:15px auto 35px;
+
+  display:flex;
+
+  flex-direction:column;
+  align-items:center;
+}
+
+.vinyl{
+  width:150px;
+  height:150px;
+
+  border-radius:50%;
+
+  position:relative;
+
+  cursor:pointer;
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      #111 0,
+      #111 4px,
+      #1d1d1d 5px,
+      #111 7px
+    );
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+}
+
+.vinyl::before{
+  content:"E & S";
+
+  position:absolute;
+
+  width:58px;
+  height:58px;
+
+  left:46px;
+  top:46px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:var(--wine3);
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:16px;
+
+  border:1px solid rgba(201,164,92,.55);
+}
+
+.vinyl::after{
+  content:"";
+
+  position:absolute;
+
+  width:8px;
+  height:8px;
+
+  left:71px;
+  top:71px;
+
+  border-radius:50%;
+
+  background:#111;
+}
+
+.vinyl.playing{
+  animation:spinVinyl 3s linear infinite;
+}
+
+@keyframes spinVinyl{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.track-name{
+  margin-top:14px;
+
+  color:var(--gold-light);
+
+  font-size:10px;
+
+  letter-spacing:1px;
+
+  min-height:28px;
+
+  max-width:300px;
+}
+
+.music-controls{
+  display:flex;
+
+  gap:12px;
+
+  margin-top:6px;
+}
+
+.music-controls button{
+  width:37px;
+  height:37px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(201,164,92,.5);
+
+  background:transparent;
+
+  color:var(--gold-light);
+}
+
+
+/* ================================
+   COUNTDOWN
+================================ */
+
+.countdown{
+  display:flex;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  margin-top:10px;
+}
+
+.count-box{
+  min-width:91px;
+
+  padding:18px 12px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  border:1px solid rgba(201,164,92,.27);
+
+  background:rgba(255,255,255,.025);
+}
+
+.count-box::after{
+  content:"";
+
+  position:absolute;
+
+  inset:-50%;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent 35%,
+      rgba(229,202,142,.15),
+      transparent 65%
+    );
+
+  animation:goldSweep 4s infinite;
+}
+
+@keyframes goldSweep{
+  from{
+    transform:translateX(-80%);
+  }
+
+  to{
+    transform:translateX(80%);
+  }
+}
+
+.count-box strong{
+  display:block;
+
+  position:relative;
+
+  z-index:2;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:45px;
+
+  font-weight:400;
+}
+
+.count-box span{
+  position:relative;
+
+  z-index:2;
+
+  font-size:7px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  opacity:.65;
+}
+
+.after-wedding{
+  display:none;
+
+  margin-top:24px;
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:28px;
+
+  font-style:italic;
+}
+
+
+/* ================================
+   BUTTONS HERO
+================================ */
+
+.hero-actions{
+  display:flex;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  margin-top:28px;
+}
+
+.gold-button{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:14px 24px;
+
+  border:1px solid var(--gold);
+
+  background:transparent;
+
+  color:var(--gold-light);
+
+  text-decoration:none;
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+  font-size:8px;
+
+  transition:.3s;
+}
+
+.gold-button:hover{
+  background:var(--gold);
+
+  color:var(--wine);
+}
+
+
+/* ================================
+   SECTIONS
+================================ */
+
+.section{
+  padding:105px 8%;
+
+  text-align:center;
+}
+
+.section-small{
+  margin-bottom:13px;
+
+  color:var(--wine3);
+
+  font-size:8px;
+
+  letter-spacing:4px;
+
+  text-transform:uppercase;
+}
+
+.section h3{
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:clamp(48px,8vw,72px);
+
+  font-weight:400;
+}
+
+
+/* ================================
+   HISTOIRE
+================================ */
+
+.story-timeline{
+  max-width:850px;
+
+  margin:60px auto 0;
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:20px;
+}
+
+.story-card{
+  background:white;
+
+  padding:36px 25px;
+
+  border-top:2px solid var(--gold);
+
+  box-shadow:
+    0 10px 30px rgba(60,0,0,.045);
+}
+
+.story-date{
+  color:var(--wine3);
+
+  font-size:10px;
+
+  letter-spacing:2px;
+}
+
+.story-card h4{
+  margin-top:12px;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:28px;
+
+  color:var(--wine2);
+}
+
+.story-card p{
+  margin-top:12px;
+
+  font-size:12px;
+
+  line-height:1.8;
+
+  opacity:.7;
+}
+
+
+/* ================================
+   PROGRAMME
+================================ */
+
+.timeline{
+  max-width:820px;
+
+  margin:60px auto 0;
+
+  position:relative;
+}
+
+.timeline::before{
+  content:"";
+
+  position:absolute;
+
+  left:119px;
+
+  top:10px;
+  bottom:10px;
+
+  width:1px;
+
+  background:rgba(201,164,92,.45);
+}
+
+.timeline-item{
+  min-height:135px;
+
+  display:grid;
+
+  grid-template-columns:
+    95px
+    48px
+    1fr;
+
+  align-items:center;
+
+  text-align:left;
+}
+
+.time{
+  text-align:right;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:29px;
+
+  color:var(--wine2);
+}
+
+.timeline-dot{
+  width:28px;
+  height:28px;
+
+  margin:auto;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  position:relative;
+
+  z-index:2;
+
+  border-radius:50%;
+
+  border:1px solid var(--gold);
+
+  background:var(--cream);
+
+  color:var(--wine2);
+
+  font-size:9px;
+}
+
+.timeline-content{
+  padding:24px 28px;
+
+  background:white;
+
+  box-shadow:
+    0 8px 28px rgba(60,0,0,.045);
+}
+
+.timeline-content h4{
+  color:var(--wine2);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:29px;
+
+  font-weight:500;
+}
+
+.timeline-content p{
+  margin-top:6px;
+
+  font-size:12px;
+
+  line-height:1.7;
+
+  opacity:.7;
+}
+
+
+/* ================================
+   PARCOURS
+================================ */
+
+.route-section{
+  background:
+    linear-gradient(150deg,#4a000a,#230003);
+
+  color:white;
+}
+
+.route-section .section-small{
+  color:var(--gold);
+}
+
+.route-grid{
+  max-width:1000px;
+
+  margin:55px auto 0;
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:16px;
+}
+
+.route-card{
+  padding:35px 24px;
+
+  border:1px solid rgba(201,164,92,.25);
+
+  background:rgba(255,255,255,.035);
+}
+
+.route-number{
+  width:35px;
+  height:35px;
+
+  margin:auto;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:50%;
+
+  border:1px solid var(--gold);
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+}
+
+.route-card h4{
+  margin-top:18px;
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:28px;
+}
+
+.route-card p{
+  margin-top:10px;
+
+  font-size:12px;
+
+  line-height:1.7;
+
+  opacity:.72;
+}
+
+.route-arrow{
+  margin-top:13px;
+
+  color:var(--gold);
+
+  font-size:20px;
+}
+
+.map-button{
+  display:inline-block;
+
+  margin-top:18px;
+
+  padding:10px 16px;
+
+  border:1px solid rgba(201,164,92,.6);
+
+  color:var(--gold-light);
+
+  text-decoration:none;
+
+  font-size:8px;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+}
+
+.parking{
+  margin-top:30px;
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:21px;
+}
+
+
+/* ================================
+   LIVRE D'OR
+================================ */
+
+.guestbook-description{
+  margin-top:12px;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:21px;
+
+  font-style:italic;
+
+  opacity:.7;
+}
+
+.guestbook-shell{
+  width:min(92vw,520px);
+
+  margin:55px auto 0;
+}
+
+
+/*
+IMPORTANT :
+la lettre est ENTIÈREMENT visible
+et cliquable.
+L'enveloppe est seulement décorative
+sous la lettre.
+*/
+
+.letter-card{
+  position:relative;
+
+  z-index:5;
+
+  width:100%;
+
+  padding:34px 28px;
+
+  background:var(--paper);
+
+  border:1px solid #ded3c6;
+
+  box-shadow:
+    0 15px 35px rgba(60,20,20,.09);
+
+  transition:
+    transform .9s ease,
+    opacity .7s ease;
+}
+
+.letter-title{
+  color:var(--wine2);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:31px;
+
+  margin-bottom:22px;
+}
+
+.letter-card input,
+.letter-card textarea{
+  width:100%;
+
+  position:relative;
+
+  z-index:20;
+
+  display:block;
+
+  margin-bottom:13px;
+
+  padding:15px;
+
+  border:1px solid #d9cec2;
+
+  border-radius:2px;
+
+  outline:none;
+
+  background:#fff;
+
+  font-size:16px;
+
+  color:#322;
+}
+
+.letter-card input:focus,
+.letter-card textarea:focus{
+  border-color:var(--gold);
+
+  box-shadow:
+    0 0 0 2px rgba(201,164,92,.1);
+}
+
+.letter-card textarea{
+  min-height:140px;
+
+  resize:vertical;
+}
+
+.envelope-pocket{
+  width:100%;
+
+  height:200px;
+
+  position:relative;
+
+  z-index:2;
+
+  margin-top:-35px;
+
+  overflow:hidden;
+
+  background:#e8ddcf;
+
+  box-shadow:
+    0 18px 35px rgba(60,20,20,.08);
+}
+
+.envelope-pocket::before{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:#e2d4c2;
+
+  clip-path:
+    polygon(
+      0 0,
+      50% 58%,
+      0 100%
+    );
+}
+
+.envelope-pocket::after{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:#eee4d7;
+
+  clip-path:
+    polygon(
+      100% 0,
+      50% 58%,
+      100% 100%
+    );
+}
+
+.envelope-bottom{
+  position:absolute;
+
+  inset:0;
+
+  z-index:3;
+
+  background:#e7dbcc;
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 48%,
+      100% 100%
+    );
+}
+
+.envelope-flap{
+  position:absolute;
+
+  inset:0;
+
+  z-index:6;
+
+  background:#f0e7db;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 63%
+    );
+
+  transform-origin:top;
+
+  transform:rotateX(180deg);
+
+  transition:transform .8s ease;
+}
+
+.wax-seal{
+  width:52px;
+  height:52px;
+
+  position:absolute;
+
+  left:50%;
+  top:84px;
+
+  z-index:8;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(circle at 35% 30%,#850018,#4a0008);
+
+  color:var(--gold-light);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:14px;
+
+  opacity:0;
+
+  transform:
+    translateX(-50%)
+    scale(.3);
+
+  transition:.6s;
+}
+
+.guestbook-shell.sending .letter-card{
+  transform:translateY(145px) scale(.94);
+
+  opacity:.7;
+}
+
+.guestbook-shell.sending .envelope-flap{
+  transform:rotateX(0);
+}
+
+.guestbook-shell.sending .wax-seal{
+  opacity:1;
+
+  transform:
+    translateX(-50%)
+    scale(1);
+
+  transition-delay:.7s;
+}
+
+.send-message{
+  display:block;
+
+  width:min(100%,360px);
+
+  margin:28px auto 0;
+
+  padding:16px 22px;
+
+  border:1px solid var(--gold);
+
+  background:var(--wine2);
+
+  color:var(--gold-light);
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+  font-size:10px;
+}
+
+.send-confirmation{
+  margin-top:22px;
+
+  opacity:0;
+
+  color:var(--wine2);
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:21px;
+
+  transition:.5s;
+}
+
+.send-confirmation.visible{
+  opacity:1;
+}
+
+
+/* ================================
+   WHATSAPP
+================================ */
+
+.whatsapp{
+  width:54px;
+  height:54px;
+
+  position:fixed;
+
+  right:17px;
+  bottom:18px;
+
+  z-index:5000;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:50%;
+
+  background:#1f9f54;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:24px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.2);
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer{
+  padding:60px 20px;
+
+  text-align:center;
+
+  color:white;
+
+  background:#230003;
+}
+
+footer p{
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:30px;
+}
+
+footer p span{
+  color:var(--gold);
+}
+
+footer small{
+  display:block;
+
+  margin-top:8px;
+
+  color:rgba(255,255,255,.45);
+
+  font-size:8px;
+
+  letter-spacing:4px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:760px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .navbar{
+    padding:11px 14px;
+  }
+
+  .nav-languages button{
+    font-size:15px;
+  }
+
+  .count-box{
+    min-width:72px;
+
+    padding:14px 8px;
+  }
+
+  .count-box strong{
+    font-size:36px;
+  }
+
+  .story-timeline,
+  .route-grid{
+    grid-template-columns:1fr;
+  }
+
+  .timeline::before{
+    left:79px;
+  }
+
+  .timeline-item{
+    grid-template-columns:
+      62px
+      33px
+      1fr;
+  }
+
+  .time{
+    font-size:21px;
+  }
+
+  .timeline-content{
+    padding:18px 16px;
+  }
+
+  .timeline-content h4{
+    font-size:23px;
+  }
+
+  .section{
+    padding:80px 17px;
+  }
+
+  .vinyl{
+    width:125px;
+    height:125px;
+  }
+
+  .vinyl::before{
+    width:50px;
+    height:50px;
+
+    left:37px;
+    top:37px;
+  }
+
+  .vinyl::after{
+    left:59px;
+    top:59px;
+  }
+
+  .letter-card{
+    padding:27px 18px;
+  }
+
+  .letter-card textarea{
+    min-height:120px;
+  }
+
+}
+
+
+/* ================================
+   AFTER WEDDING MODE
+================================ */
+
+body.after-event .after-wedding{
+  display:block;
+}
+
+body.after-event .countdown{
+  display:none;
+}
+
+</style>
 </head>
 
 <body>
 
-  <section id="intro" class="intro">
 
-    <div class="intro-content">
+<!-- ==================================
+     INTRO
+================================== -->
 
-      <p class="wedding-small-date">
-        19 • 12 • 2026
-      </p>
+<section id="intro" class="intro">
 
-      <h1>
-        Elise
-        <span>&</span>
-        Sadık
-      </h1>
+  <div class="intro-content">
 
-      <p id="introWelcome" class="intro-welcome">
-        Bienvenue dans notre histoire
-      </p>
+    <p class="intro-date">
+      19 • 12 • 2026
+    </p>
 
-      <p class="choose-language">
-        Choisissez votre langue
-      </p>
+    <h1>
+      Elise
+      <span>&</span>
+      Sadık
+    </h1>
 
-      <div class="languages">
+    <p
+      id="introWelcome"
+      class="intro-welcome"
+    >
+      Bienvenue dans notre histoire
+    </p>
 
-        <button class="language active" data-lang="fr">
-          🇫🇷
-          <span>FR</span>
-        </button>
 
-        <button class="language" data-lang="tr">
-          🇹🇷
-          <span>TR</span>
-        </button>
+    <p class="language-title">
+      Choisissez votre langue
+    </p>
 
-        <button class="language" data-lang="ku">
-          ☀️
-          <span>KU</span>
-        </button>
 
-        <button class="language" data-lang="de">
-          🇩🇪
-          <span>DE</span>
-        </button>
+    <div class="languages">
 
-        <button class="language" data-lang="en">
-          🇬🇧
-          <span>EN</span>
-        </button>
+      <button class="language active" data-lang="fr">
+        🇫🇷
+        <span>FR</span>
+      </button>
 
-      </div>
+      <button class="language" data-lang="tr">
+        🇹🇷
+        <span>TR</span>
+      </button>
 
-      <div id="coupleButton" class="couple-zone">
+      <button class="language" data-lang="ku">
+        ☀️
+        <span>KU</span>
+      </button>
 
-        <div id="couple" class="couple">
+      <button class="language" data-lang="de">
+        🇩🇪
+        <span>DE</span>
+      </button>
 
-          <div class="bride person">
+      <button class="language" data-lang="en">
+        🇬🇧
+        <span>EN</span>
+      </button>
 
-            <div class="head">
-              <div class="bride-hair"></div>
-            </div>
+    </div>
 
-            <div class="bride-body">
-              <div class="bride-dress"></div>
-            </div>
 
-            <div class="veil"></div>
+    <div
+      id="coupleButton"
+      class="couple-zone"
+    >
 
+      <div
+        id="couple"
+        class="couple"
+      >
+
+        <div class="bride person">
+
+          <div class="head">
+            <div class="bride-hair"></div>
           </div>
 
-          <div class="heart-between">
-            ♥
+          <div class="bride-body">
+            <div class="bride-dress"></div>
           </div>
 
-          <div class="groom person">
+          <div class="veil"></div>
 
-            <div class="head">
-              <div class="groom-hair"></div>
-            </div>
+        </div>
 
-            <div class="groom-body">
 
-              <div class="shirt"></div>
+        <div class="couple-heart">
+          ♥
+        </div>
 
-              <div class="bowtie">
-                ◆
-              </div>
 
+        <div class="groom person">
+
+          <div class="head">
+            <div class="groom-hair"></div>
+          </div>
+
+          <div class="groom-body">
+
+            <div class="shirt"></div>
+
+            <div class="bowtie">
+              ◆
             </div>
 
           </div>
 
         </div>
 
-        <p id="enterText" class="enter-text">
-          Touchez les mariés pour entrer
+      </div>
+
+
+      <p
+        id="enterText"
+        class="enter-text"
+      >
+        Touchez les mariés pour entrer
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================
+     SITE
+================================== -->
+
+<main
+  id="website"
+  class="hidden"
+>
+
+
+<!-- NAV -->
+
+<nav class="navbar">
+
+  <a
+    class="nav-logo"
+    href="#home"
+  >
+    E <span>&</span> S
+  </a>
+
+
+  <div class="nav-links">
+
+    <a
+      href="#home"
+      data-i18n="home"
+    >
+      Accueil
+    </a>
+
+    <a
+      href="#story"
+      data-i18n="story"
+    >
+      Notre histoire
+    </a>
+
+    <a
+      href="#programme"
+      data-i18n="programme"
+    >
+      Programme
+    </a>
+
+    <a
+      href="#route"
+      data-i18n="route"
+    >
+      Parcours
+    </a>
+
+    <a
+      href="#guestbook"
+      data-i18n="guestbook"
+    >
+      Livre d'or
+    </a>
+
+  </div>
+
+
+  <div class="nav-languages">
+
+    <button data-lang="fr">🇫🇷</button>
+    <button data-lang="tr">🇹🇷</button>
+    <button data-lang="ku">☀️</button>
+    <button data-lang="de">🇩🇪</button>
+    <button data-lang="en">🇬🇧</button>
+
+  </div>
+
+</nav>
+
+
+
+<!-- HOME -->
+
+<section
+  id="home"
+  class="hero"
+>
+
+  <p
+    class="hero-small"
+    data-i18n="weMarry"
+  >
+    Nous nous marions
+  </p>
+
+
+  <h2>
+    Elise
+    <span>&</span>
+    Sadık
+  </h2>
+
+
+  <p
+    class="hero-date"
+    data-i18n="date"
+  >
+    19 décembre 2026
+  </p>
+
+
+  <div class="gold-separator">
+    <span></span>
+    ♥
+    <span></span>
+  </div>
+
+
+  <!-- VINYLE -->
+
+  <div class="vinyl-area">
+
+    <div
+      id="vinyl"
+      class="vinyl"
+      title="Lire / mettre en pause"
+    ></div>
+
+    <div
+      id="trackName"
+      class="track-name"
+    >
+      Mehmûd Berazî — Siwar Hatin Ji Zozanan De
+    </div>
+
+    <div class="music-controls">
+
+      <button id="prevSong">
+        ◀
+      </button>
+
+      <button id="playSong">
+        ▶
+      </button>
+
+      <button id="nextSong">
+        ▶
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <audio id="audio"></audio>
+
+
+  <!-- COUNTDOWN -->
+
+  <div
+    id="countdown"
+    class="countdown"
+  >
+
+    <div class="count-box">
+
+      <strong id="days">
+        00
+      </strong>
+
+      <span data-i18n="days">
+        Jours
+      </span>
+
+    </div>
+
+
+    <div class="count-box">
+
+      <strong id="hours">
+        00
+      </strong>
+
+      <span data-i18n="hours">
+        Heures
+      </span>
+
+    </div>
+
+
+    <div class="count-box">
+
+      <strong id="minutes">
+        00
+      </strong>
+
+      <span data-i18n="minutes">
+        Minutes
+      </span>
+
+    </div>
+
+
+    <div class="count-box">
+
+      <strong id="seconds">
+        00
+      </strong>
+
+      <span data-i18n="seconds">
+        Secondes
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <p
+    class="after-wedding"
+    data-i18n="afterWedding"
+  >
+    Merci d'avoir partagé cette journée avec nous ♥
+  </p>
+
+
+  <div class="hero-actions">
+
+    <button
+      id="calendarButton"
+      class="gold-button"
+      type="button"
+      data-i18n="calendar"
+    >
+      Ajouter au calendrier
+    </button>
+
+
+    <a
+      class="gold-button"
+      href="https://wa.me/33775248608?text=Bonjour%20Sad%C4%B1k%2C%20j%27ai%20une%20question%20concernant%20le%20mariage%20%F0%9F%98%8A"
+      target="_blank"
+      data-i18n="whatsapp"
+    >
+      WhatsApp
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- HISTOIRE -->
+
+<section
+  id="story"
+  class="section"
+>
+
+  <p
+    class="section-small"
+    data-i18n="ourStorySmall"
+  >
+    Notre histoire
+  </p>
+
+  <h3 data-i18n="ourStory">
+    Notre histoire
+  </h3>
+
+
+  <div class="story-timeline">
+
+
+    <article class="story-card">
+
+      <p class="story-date">
+        27 • 11 • 2022
+      </p>
+
+      <h4 data-i18n="meeting">
+        Notre rencontre
+      </h4>
+
+      <p data-i18n="meetingText">
+        Tout a commencé pendant notre BTS Assurance.
+      </p>
+
+    </article>
+
+
+    <article class="story-card">
+
+      <p class="story-date">
+        21 • 02 • 2026
+      </p>
+
+      <h4 data-i18n="engagement">
+        Nos fiançailles
+      </h4>
+
+      <p data-i18n="engagementText">
+        Une nouvelle étape de notre histoire, entourés de ceux que nous aimons.
+      </p>
+
+    </article>
+
+
+    <article class="story-card">
+
+      <p class="story-date">
+        19 • 12 • 2026
+      </p>
+
+      <h4 data-i18n="wedding">
+        Notre mariage
+      </h4>
+
+      <p data-i18n="weddingText">
+        Le jour où nous célébrerons notre amour avec vous.
+      </p>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- PROGRAMME -->
+
+<section
+  id="programme"
+  class="section"
+>
+
+  <p
+    class="section-small"
+    data-i18n="ourDay"
+  >
+    Notre journée
+  </p>
+
+
+  <h3 data-i18n="programme">
+    Programme
+  </h3>
+
+
+  <div class="timeline">
+
+
+    <div class="timeline-item">
+
+      <div class="time">
+        14:00
+      </div>
+
+      <div class="timeline-dot">
+        ♥
+      </div>
+
+      <div class="timeline-content">
+
+        <h4>
+          Gelin Çıkarma
+        </h4>
+
+        <p data-i18n="gelinText">
+          Départ depuis Strasbourg puis sortie traditionnelle de la mariée à Colmar.
         </p>
 
       </div>
 
     </div>
 
-  </section>
 
+    <div class="timeline-item">
 
-  <main id="website" class="website hidden">
-
-    <nav class="navbar">
-
-      <a href="#home" class="nav-logo">
-        E <span>&</span> S
-      </a>
-
-      <div class="nav-links">
-
-        <a href="#home" data-i18n="navHome">
-          Accueil
-        </a>
-
-        <a href="#programme" data-i18n="navProgramme">
-          Programme
-        </a>
-
-        <a href="#address" data-i18n="navAddress">
-          Adresse
-        </a>
-
-        <a href="#guestbook" data-i18n="navGuestbook">
-          Livre d'or
-        </a>
-
+      <div class="time">
+        17:00
       </div>
 
-      <div class="mini-languages">
-
-        <button data-lang="fr">🇫🇷</button>
-        <button data-lang="tr">🇹🇷</button>
-        <button data-lang="ku">☀️</button>
-        <button data-lang="de">🇩🇪</button>
-        <button data-lang="en">🇬🇧</button>
-
-      </div>
-
-    </nav>
-
-
-    <section id="home" class="home-section">
-
-      <div class="home-decoration">
+      <div class="timeline-dot">
         ✦
       </div>
 
-      <p class="little-title" data-i18n="weMarry">
-        Nous nous marions
-      </p>
+      <div class="timeline-content">
 
-      <h2>
-        Elise
-        <span>&</span>
-        Sadık
-      </h2>
+        <h4 data-i18n="arrival">
+          Accueil des invités
+        </h4>
 
-      <p class="home-date" data-i18n="weddingDate">
-        19 décembre 2026
-      </p>
+        <p data-i18n="arrivalText">
+          Rendez-vous à Royal Events à Willstätt.
+        </p>
 
-      <div class="gold-separator">
-        <span></span>
+      </div>
+
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="time">
+        18:00
+      </div>
+
+      <div class="timeline-dot">
         ♥
-        <span></span>
       </div>
 
-      <div class="countdown">
+      <div class="timeline-content">
 
-        <div class="count-box">
-          <strong id="days">00</strong>
-          <span data-i18n="days">Jours</span>
-        </div>
+        <h4 data-i18n="party">
+          Célébration
+        </h4>
 
-        <div class="count-box">
-          <strong id="hours">00</strong>
-          <span data-i18n="hours">Heures</span>
-        </div>
-
-        <div class="count-box">
-          <strong id="minutes">00</strong>
-          <span data-i18n="minutes">Minutes</span>
-        </div>
-
-        <div class="count-box">
-          <strong id="seconds">00</strong>
-          <span data-i18n="seconds">Secondes</span>
-        </div>
+        <p data-i18n="partyText">
+          Entrée des mariés, repas, musique et fête.
+        </p>
 
       </div>
 
-      <a href="#programme" class="discover">
-        ↓
+    </div>
+
+
+    <div class="timeline-item">
+
+      <div class="time">
+        23:00
+      </div>
+
+      <div class="timeline-dot">
+        ✦
+      </div>
+
+      <div class="timeline-content">
+
+        <h4>
+          Kına
+        </h4>
+
+        <p data-i18n="kinaText">
+          La traditionnelle cérémonie du henné.
+        </p>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- PARCOURS -->
+
+<section
+  id="route"
+  class="section route-section"
+>
+
+  <p
+    class="section-small"
+    data-i18n="journeySmall"
+  >
+    Le parcours
+  </p>
+
+  <h3 data-i18n="journey">
+    Le parcours du mariage
+  </h3>
+
+
+  <div class="route-grid">
+
+
+    <article class="route-card">
+
+      <div class="route-number">
+        1
+      </div>
+
+      <h4>
+        Strasbourg
+      </h4>
+
+      <p data-i18n="strasbourgText">
+        Départ depuis chez le Damat à Strasbourg.
+      </p>
+
+      <a
+        class="map-button"
+        target="_blank"
+        href="https://www.google.com/maps/search/?api=1&query=Strasbourg"
+      >
+        Google Maps
       </a>
 
-    </section>
-
-
-    <section id="programme" class="section programme-section">
-
-      <p class="section-small" data-i18n="ourDay">
-        Notre journée
-      </p>
-
-      <h3 data-i18n="programmeTitle">
-        Programme
-      </h3>
-
-      <div class="timeline">
-
-        <div class="timeline-item">
-
-          <div class="time">
-            14:00
-          </div>
-
-          <div class="timeline-dot">
-            ♥
-          </div>
-
-          <div class="timeline-content">
-
-            <h4>
-              Gelin Çıkarma
-            </h4>
-
-            <p data-i18n="gelinText">
-              La traditionnelle sortie de la mariée entourée de nos familles.
-            </p>
-
-          </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-          <div class="time">
-            17:00
-          </div>
-
-          <div class="timeline-dot">
-            ✦
-          </div>
-
-          <div class="timeline-content">
-
-            <h4 data-i18n="guestArrival">
-              Accueil des invités
-            </h4>
-
-            <p data-i18n="guestArrivalText">
-              Nous aurons le plaisir de vous accueillir pour célébrer cette journée.
-            </p>
-
-          </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-          <div class="time">
-            18:00
-          </div>
-
-          <div class="timeline-dot">
-            ♥
-          </div>
-
-          <div class="timeline-content">
-
-            <h4 data-i18n="celebration">
-              Célébration
-            </h4>
-
-            <p data-i18n="celebrationText">
-              Entrée des mariés, repas, musique et fête.
-            </p>
-
-          </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-          <div class="time">
-            23:00
-          </div>
-
-          <div class="timeline-dot">
-            ✦
-          </div>
-
-          <div class="timeline-content">
-
-            <h4>
-              Kına
-            </h4>
-
-            <p data-i18n="kinaText">
-              La traditionnelle cérémonie du henné.
-            </p>
-
-          </div>
-
-        </div>
-
+      <div class="route-arrow">
+        ↓
       </div>
 
-    </section>
+    </article>
 
 
-    <section id="address" class="address-section">
+    <article class="route-card">
 
-      <p class="section-small gold" data-i18n="meetHere">
-        Rendez-vous
+      <div class="route-number">
+        2
+      </div>
+
+      <h4>
+        Colmar
+      </h4>
+
+      <p data-i18n="colmarText">
+        Gelin Çıkarma : sortie traditionnelle de la mariée.
       </p>
 
-      <h3>
+      <a
+        class="map-button"
+        target="_blank"
+        href="https://www.google.com/maps/search/?api=1&query=Colmar"
+      >
+        Google Maps
+      </a>
+
+      <div class="route-arrow">
+        ↓
+      </div>
+
+    </article>
+
+
+    <article class="route-card">
+
+      <div class="route-number">
+        3
+      </div>
+
+      <h4>
         Royal Events
-      </h3>
+      </h4>
 
-      <div class="gold-separator">
-        <span></span>
-        ✦
-        <span></span>
-      </div>
-
-      <p class="address-text">
+      <p>
         77731 Willstätt
         <br>
         Allemagne
       </p>
 
       <a
-        href="https://www.google.com/maps/search/?api=1&query=Royal+Events+77731+Willstatt"
+        class="map-button"
         target="_blank"
-        class="gold-button"
-        data-i18n="route"
+        href="https://www.google.com/maps/search/?api=1&query=Royal+Events+77731+Willstatt"
       >
-        Voir l'itinéraire
+        Google Maps
       </a>
 
-    </section>
+    </article>
 
 
-    <section id="guestbook" class="section guestbook-section">
+  </div>
 
-      <p class="section-small" data-i18n="fewWords">
-        Quelques mots pour nous
-      </p>
 
-      <h3 data-i18n="guestbookTitle">
-        Livre d'or
-      </h3>
+  <p
+    class="parking"
+    data-i18n="parking"
+  >
+    ✦ Parking disponible sur place à Royal Events ✦
+  </p>
 
-      <p class="guestbook-description" data-i18n="guestbookDescription">
-        Glissez votre message dans notre enveloppe.
-      </p>
+</section>
 
-      <div class="envelope-wrapper">
 
-        <div id="envelope" class="envelope">
 
-          <div class="envelope-back"></div>
+<!-- LIVRE D'OR -->
 
-          <div class="letter">
+<section
+  id="guestbook"
+  class="section"
+>
 
-            <form
-              id="guestbookForm"
-              action="https://formsubmit.co/sadik.sk@outlook.fr"
-              method="POST"
-            >
+  <p
+    class="section-small"
+    data-i18n="fewWords"
+  >
+    Quelques mots pour nous
+  </p>
 
-              <input
-                type="hidden"
-                name="_subject"
-                value="Nouveau message - Livre d'or Elise & Sadık"
-              >
+  <h3 data-i18n="guestbook">
+    Livre d'or
+  </h3>
 
-              <input
-                type="hidden"
-                name="_captcha"
-                value="false"
-              >
+  <p
+    class="guestbook-description"
+    data-i18n="guestText"
+  >
+    Écrivez-nous un petit mot avant de le glisser dans notre enveloppe.
+  </p>
 
-              <input
-                type="hidden"
-                name="_template"
-                value="table"
-              >
 
-              <input
-                id="guestName"
-                type="text"
-                name="Prénom"
-                placeholder="Votre prénom"
-                required
-              >
+  <div
+    id="guestbookShell"
+    class="guestbook-shell"
+  >
 
-              <textarea
-                id="guestMessage"
-                name="Message"
-                placeholder="Votre message..."
-                required
-              ></textarea>
 
-            </form>
+    <div class="letter-card">
 
-          </div>
-
-          <div class="envelope-left"></div>
-          <div class="envelope-right"></div>
-          <div class="envelope-bottom"></div>
-          <div class="envelope-flap"></div>
-
-          <div class="wax-seal">
-            E&S
-          </div>
-
-        </div>
-
+      <div class="letter-title">
+        Elise ♥ Sadık
       </div>
 
-      <button
-        type="submit"
-        form="guestbookForm"
-        class="outside-button"
-        data-i18n="send"
+
+      <form
+        id="guestForm"
+        action="https://formsubmit.co/sadik.sk@outlook.fr"
+        method="POST"
       >
-        Envoyer mon message ♥
-      </button>
-
-      <p id="sendConfirmation" class="send-confirmation">
-        ♥ Merci pour votre message ♥
-      </p>
-
-    </section>
 
 
-    <footer>
-
-      <p>
-        Elise <span>&</span> Sadık
-      </p>
-
-      <small>
-        19 • 12 • 2026
-      </small>
-
-    </footer>
-
-  </main>
+        <input
+          type="hidden"
+          name="_subject"
+          value="Nouveau message du livre d'or Elise & Sadık"
+        >
 
 
-  <script>
-    const translations = {
+        <input
+          type="hidden"
+          name="_captcha"
+          value="false"
+        >
 
-      fr: {
-        welcome: "Bienvenue dans notre histoire",
-        enter: "Touchez les mariés pour entrer",
-        navHome: "Accueil",
-        navProgramme: "Programme",
-        navAddress: "Adresse",
-        navGuestbook: "Livre d'or",
-        weMarry: "Nous nous marions",
-        weddingDate: "19 décembre 2026",
-        days: "Jours",
-        hours: "Heures",
-        minutes: "Minutes",
-        seconds: "Secondes",
-        ourDay: "Notre journée",
-        programmeTitle: "Programme",
-        gelinText: "La traditionnelle sortie de la mariée entourée de nos familles.",
-        guestArrival: "Accueil des invités",
-        guestArrivalText: "Nous aurons le plaisir de vous accueillir pour célébrer cette journée.",
-        celebration: "Célébration",
-        celebrationText: "Entrée des mariés, repas, musique et fête.",
-        kinaText: "La traditionnelle cérémonie du henné.",
-        meetHere: "Rendez-vous",
-        route: "Voir l'itinéraire",
-        fewWords: "Quelques mots pour nous",
-        guestbookTitle: "Livre d'or",
-        guestbookDescription: "Glissez votre message dans notre enveloppe.",
-        send: "Envoyer mon message ♥"
-      },
 
-      tr: {
-        welcome: "Hikâyemize hoş geldiniz",
-        enter: "Girmek için çifte dokunun",
-        navHome: "Ana Sayfa",
-        navProgramme: "Program",
-        navAddress: "Adres",
-        navGuestbook: "Anı Defteri",
-        weMarry: "Evleniyoruz",
-        weddingDate: "19 Aralık 2026",
-        days: "Gün",
-        hours: "Saat",
-        minutes: "Dakika",
-        seconds: "Saniye",
-        ourDay: "Günümüz",
-        programmeTitle: "Program",
-        gelinText: "Ailelerimizle birlikte geleneksel gelin çıkarma.",
-        guestArrival: "Misafirlerin karşılanması",
-        guestArrivalText: "Bu özel günü birlikte kutlamak için sizleri karşılayacağız.",
-        celebration: "Düğün",
-        celebrationText: "Gelin ve damadın girişi, yemek, müzik ve eğlence.",
-        kinaText: "Geleneksel kına töreni.",
-        meetHere: "Buluşma noktası",
-        route: "Yol tarifi",
-        fewWords: "Bizim için birkaç söz",
-        guestbookTitle: "Anı Defteri",
-        guestbookDescription: "Mesajınızı zarfımıza bırakın.",
-        send: "Mesajımı gönder ♥"
-      },
+        <input
+          type="hidden"
+          name="_template"
+          value="table"
+        >
 
-      ku: {
-        welcome: "Bi xêr hatin çîroka me",
-        enter: "Ji bo ketinê li ser zewaciyan bitikînin",
-        navHome: "Destpêk",
-        navProgramme: "Bername",
-        navAddress: "Navnîşan",
-        navGuestbook: "Pirtûka mêvanan",
-        weMarry: "Em dizewicin",
-        weddingDate: "19 Kanûna Pêşîn 2026",
-        days: "Roj",
-        hours: "Saet",
-        minutes: "Deqîqe",
-        seconds: "Saniye",
-        ourDay: "Roja me",
-        programmeTitle: "Bername",
-        gelinText: "Derketina kevneşopî ya bûkê bi malbatên me re.",
-        guestArrival: "Pêşwaziya mêvanan",
-        guestArrivalText: "Em ê ji bo pîrozkirina vê rojê bi hev re pêşwaziya we bikin.",
-        celebration: "Dawet",
-        celebrationText: "Hatina bûk û zavê, xwarin, muzîk û şahî.",
-        kinaText: "Merasyma kevneşopî ya henayê.",
-        meetHere: "Cihê me",
-        route: "Rê nîşan bide",
-        fewWords: "Çend peyv ji bo me",
-        guestbookTitle: "Pirtûka mêvanan",
-        guestbookDescription: "Peyama xwe têxin nav zerfa me.",
-        send: "Peyama min bişîne ♥"
-      },
 
-      de: {
-        welcome: "Willkommen in unserer Geschichte",
-        enter: "Berührt das Brautpaar, um einzutreten",
-        navHome: "Startseite",
-        navProgramme: "Programm",
-        navAddress: "Adresse",
-        navGuestbook: "Gästebuch",
-        weMarry: "Wir heiraten",
-        weddingDate: "19. Dezember 2026",
-        days: "Tage",
-        hours: "Stunden",
-        minutes: "Minuten",
-        seconds: "Sekunden",
-        ourDay: "Unser Tag",
-        programmeTitle: "Programm",
-        gelinText: "Der traditionelle Auszug der Braut im Kreise unserer Familien.",
-        guestArrival: "Empfang der Gäste",
-        guestArrivalText: "Wir freuen uns, euch zu diesem besonderen Tag begrüßen zu dürfen.",
-        celebration: "Hochzeitsfeier",
-        celebrationText: "Einzug des Brautpaares, Essen, Musik und Feier.",
-        kinaText: "Die traditionelle Henna-Zeremonie.",
-        meetHere: "Treffpunkt",
-        route: "Route anzeigen",
-        fewWords: "Ein paar Worte für uns",
-        guestbookTitle: "Gästebuch",
-        guestbookDescription: "Legt eure Nachricht in unseren Umschlag.",
-        send: "Nachricht senden ♥"
-      },
+        <input
+          id="guestName"
+          name="Prénom"
+          type="text"
+          placeholder="Votre prénom"
+          data-placeholder="guestNamePlaceholder"
+          required
+        >
 
-      en: {
-        welcome: "Welcome to our story",
-        enter: "Touch the newlyweds to enter",
-        navHome: "Home",
-        navProgramme: "Schedule",
-        navAddress: "Address",
-        navGuestbook: "Guestbook",
-        weMarry: "We're getting married",
-        weddingDate: "December 19, 2026",
-        days: "Days",
-        hours: "Hours",
-        minutes: "Minutes",
-        seconds: "Seconds",
-        ourDay: "Our day",
-        programmeTitle: "Schedule",
-        gelinText: "The traditional bridal departure surrounded by our families.",
-        guestArrival: "Guest arrival",
-        guestArrivalText: "We look forward to welcoming you to celebrate this special day.",
-        celebration: "Celebration",
-        celebrationText: "Bride and groom entrance, dinner, music and celebration.",
-        kinaText: "The traditional henna ceremony.",
-        meetHere: "Meet us here",
-        route: "Get directions",
-        fewWords: "A few words for us",
-        guestbookTitle: "Guestbook",
-        guestbookDescription: "Place your message inside our envelope.",
-        send: "Send my message ♥"
+
+        <textarea
+          id="guestMessage"
+          name="Message"
+          placeholder="Votre message..."
+          data-placeholder="guestMessagePlaceholder"
+          required
+        ></textarea>
+
+
+      </form>
+
+    </div>
+
+
+    <div class="envelope-pocket">
+
+      <div class="envelope-bottom"></div>
+
+      <div class="envelope-flap"></div>
+
+      <div class="wax-seal">
+        E&S
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <button
+    form="guestForm"
+    type="submit"
+    class="send-message"
+    data-i18n="send"
+  >
+    Envoyer mon message ♥
+  </button>
+
+
+  <p
+    id="sendConfirmation"
+    class="send-confirmation"
+    data-i18n="thankYou"
+  >
+    ♥ Merci pour votre message ♥
+  </p>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <p>
+    Elise <span>&</span> Sadık
+  </p>
+
+  <small>
+    19 • 12 • 2026
+  </small>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- WHATSAPP FLOTTANT -->
+
+<a
+  class="whatsapp"
+  href="https://wa.me/33775248608?text=Bonjour%20Sad%C4%B1k%2C%20j%27ai%20une%20question%20concernant%20le%20mariage%20%F0%9F%98%8A"
+  target="_blank"
+  title="WhatsApp Sadık"
+>
+  ☎
+</a>
+
+
+
+<script>
+
+/* ==================================
+   TRADUCTIONS
+================================== */
+
+const translations = {
+
+fr:{
+
+welcome:"Bienvenue dans notre histoire",
+enter:"Touchez les mariés pour entrer",
+
+home:"Accueil",
+story:"Notre histoire",
+programme:"Programme",
+route:"Parcours",
+guestbook:"Livre d'or",
+
+weMarry:"Nous nous marions",
+date:"19 décembre 2026",
+
+days:"Jours",
+hours:"Heures",
+minutes:"Minutes",
+seconds:"Secondes",
+
+afterWedding:"Merci d'avoir partagé cette journée avec nous ♥",
+
+calendar:"Ajouter au calendrier",
+whatsapp:"WhatsApp",
+
+ourStorySmall:"Notre histoire",
+ourStory:"Notre histoire",
+
+meeting:"Notre rencontre",
+meetingText:"Tout a commencé pendant notre BTS Assurance.",
+
+engagement:"Nos fiançailles",
+engagementText:"Une nouvelle étape de notre histoire, entourés de ceux que nous aimons.",
+
+wedding:"Notre mariage",
+weddingText:"Le jour où nous célébrerons notre amour avec vous.",
+
+ourDay:"Notre journée",
+
+gelinText:"Départ depuis Strasbourg puis sortie traditionnelle de la mariée à Colmar.",
+
+arrival:"Accueil des invités",
+arrivalText:"Rendez-vous à Royal Events à Willstätt.",
+
+party:"Célébration",
+partyText:"Entrée des mariés, repas, musique et fête.",
+
+kinaText:"La traditionnelle cérémonie du henné.",
+
+journeySmall:"Le parcours",
+journey:"Le parcours du mariage",
+
+strasbourgText:"Départ depuis chez le Damat à Strasbourg.",
+
+colmarText:"Gelin Çıkarma : sortie traditionnelle de la mariée.",
+
+parking:"✦ Parking disponible sur place à Royal Events ✦",
+
+fewWords:"Quelques mots pour nous",
+
+guestText:"Écrivez-nous un petit mot avant de le glisser dans notre enveloppe.",
+
+send:"Envoyer mon message ♥",
+
+thankYou:"♥ Merci pour votre message ♥",
+
+guestNamePlaceholder:"Votre prénom",
+
+guestMessagePlaceholder:"Votre message..."
+
+},
+
+
+tr:{
+
+welcome:"Hikâyemize hoş geldiniz",
+enter:"Girmek için çifte dokunun",
+
+home:"Ana Sayfa",
+story:"Hikâyemiz",
+programme:"Program",
+route:"Güzergâh",
+guestbook:"Anı Defteri",
+
+weMarry:"Evleniyoruz",
+date:"19 Aralık 2026",
+
+days:"Gün",
+hours:"Saat",
+minutes:"Dakika",
+seconds:"Saniye",
+
+afterWedding:"Bu güzel günü bizimle paylaştığınız için teşekkür ederiz ♥",
+
+calendar:"Takvime ekle",
+whatsapp:"WhatsApp",
+
+ourStorySmall:"Hikâyemiz",
+ourStory:"Hikâyemiz",
+
+meeting:"Tanışmamız",
+meetingText:"Her şey BTS Assurance eğitimimiz sırasında başladı.",
+
+engagement:"Nişanımız",
+engagementText:"Ailelerimizle birlikte hikâyemizin yeni bir adımı.",
+
+wedding:"Düğünümüz",
+weddingText:"Sevgimizi sizlerle kutlayacağımız gün.",
+
+ourDay:"Günümüz",
+
+gelinText:"Strasbourg'dan hareket ve Colmar'da geleneksel Gelin Çıkarma.",
+
+arrival:"Misafirlerin karşılanması",
+arrivalText:"Willstätt Royal Events'te buluşuyoruz.",
+
+party:"Düğün",
+partyText:"Gelin ve damadın girişi, yemek, müzik ve eğlence.",
+
+kinaText:"Geleneksel kına töreni.",
+
+journeySmall:"Güzergâh",
+journey:"Düğün güzergâhı",
+
+strasbourgText:"Strasbourg'da damat evinden hareket.",
+
+colmarText:"Colmar'da geleneksel Gelin Çıkarma.",
+
+parking:"✦ Royal Events'te otopark mevcuttur ✦",
+
+fewWords:"Bizim için birkaç söz",
+
+guestText:"Mesajınızı yazın ve zarfımıza bırakın.",
+
+send:"Mesajımı gönder ♥",
+
+thankYou:"♥ Mesajınız için teşekkür ederiz ♥",
+
+guestNamePlaceholder:"Adınız",
+
+guestMessagePlaceholder:"Mesajınız..."
+
+},
+
+
+ku:{
+
+welcome:"Bi xêr hatin çîroka me",
+enter:"Ji bo ketinê li zewaciyan bitikînin",
+
+home:"Destpêk",
+story:"Çîroka me",
+programme:"Bername",
+route:"Rê",
+guestbook:"Pirtûka mêvanan",
+
+weMarry:"Em dizewicin",
+date:"19 Kanûna Pêşîn 2026",
+
+days:"Roj",
+hours:"Saet",
+minutes:"Deqîqe",
+seconds:"Saniye",
+
+afterWedding:"Spas ku hûn vê roja xweş bi me re parve kirin ♥",
+
+calendar:"Bikeve salnameyê",
+whatsapp:"WhatsApp",
+
+ourStorySmall:"Çîroka me",
+ourStory:"Çîroka me",
+
+meeting:"Hevdîtina me",
+meetingText:"Her tişt di BTS Assurance de dest pê kir.",
+
+engagement:"Nîşana me",
+engagementText:"Gaveke nû di çîroka me de bi malbatên me re.",
+
+wedding:"Daweta me",
+weddingText:"Roja ku em evîna xwe bi we re pîroz bikin.",
+
+ourDay:"Roja me",
+
+gelinText:"Ji Strasbourg derketin û Gelin Çıkarma li Colmar.",
+
+arrival:"Pêşwaziya mêvanan",
+arrivalText:"Li Royal Events Willstätt em ê hev bibînin.",
+
+party:"Dawet",
+partyText:"Hatina bûk û zavê, xwarin, muzîk û şahî.",
+
+kinaText:"Merasyma kevneşopî ya henayê.",
+
+journeySmall:"Rê",
+journey:"Rêya dawetê",
+
+strasbourgText:"Ji mala zavê li Strasbourg derdikevin.",
+
+colmarText:"Gelin Çıkarma li Colmar.",
+
+parking:"✦ Li Royal Events parking heye ✦",
+
+fewWords:"Çend peyv ji bo me",
+
+guestText:"Peyama xwe binivîsin û têxin nav zerfa me.",
+
+send:"Peyama min bişîne ♥",
+
+thankYou:"♥ Spas ji bo peyama we ♥",
+
+guestNamePlaceholder:"Navê we",
+
+guestMessagePlaceholder:"Peyama we..."
+
+},
+
+
+de:{
+
+welcome:"Willkommen in unserer Geschichte",
+enter:"Berührt das Brautpaar, um einzutreten",
+
+home:"Startseite",
+story:"Unsere Geschichte",
+programme:"Programm",
+route:"Route",
+guestbook:"Gästebuch",
+
+weMarry:"Wir heiraten",
+date:"19. Dezember 2026",
+
+days:"Tage",
+hours:"Stunden",
+minutes:"Minuten",
+seconds:"Sekunden",
+
+afterWedding:"Danke, dass ihr diesen Tag mit uns geteilt habt ♥",
+
+calendar:"Zum Kalender hinzufügen",
+whatsapp:"WhatsApp",
+
+ourStorySmall:"Unsere Geschichte",
+ourStory:"Unsere Geschichte",
+
+meeting:"Unser Kennenlernen",
+meetingText:"Alles begann während unserer BTS-Assurance-Ausbildung.",
+
+engagement:"Unsere Verlobung",
+engagementText:"Ein neuer Schritt unserer Geschichte mit unseren Familien.",
+
+wedding:"Unsere Hochzeit",
+weddingText:"Der Tag, an dem wir unsere Liebe mit euch feiern.",
+
+ourDay:"Unser Tag",
+
+gelinText:"Abfahrt in Strasbourg und traditionelle Brautabholung in Colmar.",
+
+arrival:"Empfang der Gäste",
+arrivalText:"Treffpunkt bei Royal Events in Willstätt.",
+
+party:"Hochzeitsfeier",
+partyText:"Einzug des Brautpaares, Essen, Musik und Feier.",
+
+kinaText:"Die traditionelle Henna-Zeremonie.",
+
+journeySmall:"Unsere Route",
+journey:"Die Hochzeitsroute",
+
+strasbourgText:"Abfahrt vom Haus des Bräutigams in Strasbourg.",
+
+colmarText:"Traditionelle Brautabholung in Colmar.",
+
+parking:"✦ Parkplatz direkt bei Royal Events vorhanden ✦",
+
+fewWords:"Ein paar Worte für uns",
+
+guestText:"Schreibt uns eine Nachricht und legt sie in unseren Umschlag.",
+
+send:"Nachricht senden ♥",
+
+thankYou:"♥ Vielen Dank für eure Nachricht ♥",
+
+guestNamePlaceholder:"Euer Name",
+
+guestMessagePlaceholder:"Eure Nachricht..."
+
+},
+
+
+en:{
+
+welcome:"Welcome to our story",
+enter:"Touch the newlyweds to enter",
+
+home:"Home",
+story:"Our story",
+programme:"Schedule",
+route:"Route",
+guestbook:"Guestbook",
+
+weMarry:"We're getting married",
+date:"December 19, 2026",
+
+days:"Days",
+hours:"Hours",
+minutes:"Minutes",
+seconds:"Seconds",
+
+afterWedding:"Thank you for sharing this beautiful day with us ♥",
+
+calendar:"Add to calendar",
+whatsapp:"WhatsApp",
+
+ourStorySmall:"Our story",
+ourStory:"Our story",
+
+meeting:"Our meeting",
+meetingText:"It all started during our BTS Insurance studies.",
+
+engagement:"Our engagement",
+engagementText:"A new chapter in our story surrounded by our families.",
+
+wedding:"Our wedding",
+weddingText:"The day we celebrate our love with you.",
+
+ourDay:"Our day",
+
+gelinText:"Departure from Strasbourg followed by the traditional bridal departure in Colmar.",
+
+arrival:"Guest arrival",
+arrivalText:"Meet us at Royal Events in Willstätt.",
+
+party:"Celebration",
+partyText:"Bride and groom entrance, dinner, music and celebration.",
+
+kinaText:"The traditional henna ceremony.",
+
+journeySmall:"Our route",
+journey:"Wedding route",
+
+strasbourgText:"Departure from the groom's home in Strasbourg.",
+
+colmarText:"Traditional bridal departure in Colmar.",
+
+parking:"✦ Parking available on site at Royal Events ✦",
+
+fewWords:"A few words for us",
+
+guestText:"Write us a message before placing it in our envelope.",
+
+send:"Send my message ♥",
+
+thankYou:"♥ Thank you for your message ♥",
+
+guestNamePlaceholder:"Your name",
+
+guestMessagePlaceholder:"Your message..."
+
+}
+
+};
+
+
+
+/* ==================================
+   LANGUES
+================================== */
+
+function setLanguage(lang){
+
+  const t =
+    translations[lang];
+
+  if(!t) return;
+
+
+  document.documentElement.lang =
+    lang;
+
+
+  document.getElementById(
+    "introWelcome"
+  ).textContent =
+    t.welcome;
+
+
+  document.getElementById(
+    "enterText"
+  ).textContent =
+    t.enter;
+
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element=>{
+
+      const key =
+        element.dataset.i18n;
+
+      if(t[key]){
+        element.textContent =
+          t[key];
       }
 
-    };
+    });
 
 
-    function changeLanguage(lang) {
+  document
+    .querySelectorAll(
+      "[data-placeholder]"
+    )
+    .forEach(element=>{
 
-      const t = translations[lang];
+      const key =
+        element.dataset.placeholder;
 
-      if (!t) return;
+      if(t[key]){
+        element.placeholder =
+          t[key];
+      }
 
-      document.documentElement.lang = lang;
-
-      document.getElementById("introWelcome").textContent = t.welcome;
-      document.getElementById("enterText").textContent = t.enter;
-
-      document.querySelectorAll("[data-i18n]").forEach(element => {
-
-        const key = element.dataset.i18n;
-
-        if (t[key]) {
-          element.textContent = t[key];
-        }
-
-      });
-
-      document.querySelectorAll(".language").forEach(button => {
-
-        button.classList.toggle(
-          "active",
-          button.dataset.lang === lang
-        );
-
-      });
-
-      localStorage.setItem("weddingLanguage", lang);
-
-    }
+    });
 
 
-    document.querySelectorAll("[data-lang]").forEach(button => {
+  document
+    .querySelectorAll(".language")
+    .forEach(button=>{
 
-      button.addEventListener("click", event => {
+      button.classList.toggle(
+        "active",
+        button.dataset.lang === lang
+      );
+
+    });
+
+
+  localStorage.setItem(
+    "weddingLanguage",
+    lang
+  );
+
+}
+
+
+document
+  .querySelectorAll("[data-lang]")
+  .forEach(button=>{
+
+    button.addEventListener(
+      "click",
+      event=>{
 
         event.stopPropagation();
 
-        changeLanguage(button.dataset.lang);
+        setLanguage(
+          button.dataset.lang
+        );
 
-      });
+      }
+    );
 
-    });
+  });
 
 
-    changeLanguage(
-      localStorage.getItem("weddingLanguage") || "fr"
+setLanguage(
+  localStorage.getItem(
+    "weddingLanguage"
+  ) || "fr"
+);
+
+
+
+/* ==================================
+   ENTREE / DANSE
+================================== */
+
+const intro =
+  document.getElementById("intro");
+
+const website =
+  document.getElementById("website");
+
+const couple =
+  document.getElementById("couple");
+
+const coupleButton =
+  document.getElementById("coupleButton");
+
+
+function createConfetti(){
+
+  for(let i=0;i<32;i++){
+
+    const confetti =
+      document.createElement("div");
+
+    confetti.className =
+      "confetti";
+
+    confetti.style.left =
+      Math.random() * 100 + "vw";
+
+    confetti.style.animationDelay =
+      Math.random() * .7 + "s";
+
+    confetti.style.opacity =
+      .35 + Math.random() * .6;
+
+    confetti.style.transform =
+      `rotate(${Math.random()*360}deg)`;
+
+    document.body.appendChild(
+      confetti
+    );
+
+    setTimeout(
+      ()=>confetti.remove(),
+      3300
+    );
+
+  }
+
+}
+
+
+coupleButton.addEventListener(
+  "click",
+  ()=>{
+
+    couple.classList.add(
+      "dancing"
+    );
+
+    createConfetti();
+
+
+    setTimeout(
+      ()=>{
+        intro.classList.add(
+          "fade-away"
+        );
+      },
+      1050
     );
 
 
-    const intro = document.getElementById("intro");
-    const website = document.getElementById("website");
-    const coupleButton = document.getElementById("coupleButton");
-    const couple = document.getElementById("couple");
+    setTimeout(
+      ()=>{
+
+        intro.style.display =
+          "none";
+
+        website.classList.remove(
+          "hidden"
+        );
+
+        window.scrollTo(
+          0,
+          0
+        );
+
+      },
+      1800
+    );
+
+  }
+);
 
 
-    coupleButton.addEventListener("click", () => {
 
-      couple.classList.add("dancing");
+/* ==================================
+   COUNTDOWN
+================================== */
 
-      setTimeout(() => {
-
-        intro.classList.add("fade-away");
-
-      }, 1000);
-
-      setTimeout(() => {
-
-        intro.style.display = "none";
-
-        website.classList.remove("hidden");
-        website.classList.add("visible");
-
-        window.scrollTo(0, 0);
-
-      }, 1800);
-
-    });
+const weddingDate =
+  new Date(
+    "2026-12-19T17:00:00+01:00"
+  );
 
 
-    const weddingDate = new Date(
-      "2026-12-19T17:00:00+01:00"
+function updateCountdown(){
+
+  const now =
+    new Date();
+
+  const difference =
+    weddingDate - now;
+
+
+  if(difference <= 0){
+
+    document.body.classList.add(
+      "after-event"
+    );
+
+    return;
+  }
+
+
+  const days =
+    Math.floor(
+      difference / 86400000
     );
 
 
-    function updateCountdown() {
+  const hours =
+    Math.floor(
+      difference / 3600000
+    ) % 24;
 
-      const now = new Date();
-      const difference = weddingDate - now;
 
-      if (difference <= 0) return;
+  const minutes =
+    Math.floor(
+      difference / 60000
+    ) % 60;
 
-      const days =
-        Math.floor(difference / 86400000);
 
-      const hours =
-        Math.floor(difference / 3600000) % 24;
+  const seconds =
+    Math.floor(
+      difference / 1000
+    ) % 60;
 
-      const minutes =
-        Math.floor(difference / 60000) % 60;
 
-      const seconds =
-        Math.floor(difference / 1000) % 60;
+  document.getElementById(
+    "days"
+  ).textContent =
+    days;
 
-      document.getElementById("days").textContent = days;
 
-      document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
+  document.getElementById(
+    "hours"
+  ).textContent =
+    String(hours).padStart(
+      2,
+      "0"
+    );
 
-      document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
 
-      document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
+  document.getElementById(
+    "minutes"
+  ).textContent =
+    String(minutes).padStart(
+      2,
+      "0"
+    );
+
+
+  document.getElementById(
+    "seconds"
+  ).textContent =
+    String(seconds).padStart(
+      2,
+      "0"
+    );
+
+}
+
+
+updateCountdown();
+
+setInterval(
+  updateCountdown,
+  1000
+);
+
+
+
+/* ==================================
+   MUSIQUE VINYLE
+================================== */
+
+const songs = [
+
+  {
+    title:
+      "Mehmûd Berazî — Siwar Hatin Ji Zozanan De",
+
+    file:
+      "siwar-hatin.mp3"
+  },
+
+  {
+    title:
+      "Grup Evan — Eka Çona",
+
+    file:
+      "eka-cona.mp3"
+  },
+
+  {
+    title:
+      "Amo 988 — Elini Ver De",
+
+    file:
+      "elini-ver-de.mp3"
+  }
+
+];
+
+
+let currentSong = 0;
+
+
+const audio =
+  document.getElementById(
+    "audio"
+  );
+
+const vinyl =
+  document.getElementById(
+    "vinyl"
+  );
+
+const trackName =
+  document.getElementById(
+    "trackName"
+  );
+
+const playSong =
+  document.getElementById(
+    "playSong"
+  );
+
+
+function loadSong(){
+
+  audio.src =
+    songs[currentSong].file;
+
+  trackName.textContent =
+    songs[currentSong].title;
+
+}
+
+
+function playCurrent(){
+
+  audio.play()
+    .then(()=>{
+
+      vinyl.classList.add(
+        "playing"
+      );
+
+      playSong.textContent =
+        "❚❚";
+
+    })
+    .catch(()=>{});
+
+}
+
+
+function toggleMusic(){
+
+  if(audio.paused){
+
+    playCurrent();
+
+  }else{
+
+    audio.pause();
+
+    vinyl.classList.remove(
+      "playing"
+    );
+
+    playSong.textContent =
+      "▶";
+
+  }
+
+}
+
+
+vinyl.addEventListener(
+  "click",
+  toggleMusic
+);
+
+
+playSong.addEventListener(
+  "click",
+  toggleMusic
+);
+
+
+document
+  .getElementById(
+    "nextSong"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      currentSong =
+        (currentSong + 1)
+        %
+        songs.length;
+
+      loadSong();
+
+      playCurrent();
 
     }
+  );
 
 
-    updateCountdown();
+document
+  .getElementById(
+    "prevSong"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
 
-    setInterval(updateCountdown, 1000);
+      currentSong--;
+
+      if(currentSong < 0){
+        currentSong =
+          songs.length - 1;
+      }
+
+      loadSong();
+
+      playCurrent();
+
+    }
+  );
 
 
-    const guestbookForm =
-      document.getElementById("guestbookForm");
+audio.addEventListener(
+  "ended",
+  ()=>{
 
-    const envelope =
-      document.getElementById("envelope");
+    currentSong =
+      (currentSong + 1)
+      %
+      songs.length;
 
-    const confirmation =
-      document.getElementById("sendConfirmation");
+    loadSong();
+
+    playCurrent();
+
+  }
+);
 
 
-    guestbookForm.addEventListener("submit", event => {
+loadSong();
 
-      event.preventDefault();
 
-      envelope.classList.add("sending");
 
-      setTimeout(() => {
+/* ==================================
+   CALENDRIER
+================================== */
 
-        confirmation.classList.add("visible");
+document
+  .getElementById(
+    "calendarButton"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
 
-      }, 1200);
+      const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Elise & Sadik//Mariage//FR
+BEGIN:VEVENT
+UID:elise-sadik-19122026
+DTSTAMP:20260929T100000Z
+DTSTART:20261219T160000Z
+DTEND:20261220T020000Z
+SUMMARY:Mariage Elise & Sadik
+LOCATION:Royal Events, 77731 Willstatt, Allemagne
+DESCRIPTION:Mariage Elise & Sadik
+END:VEVENT
+END:VCALENDAR`;
 
-      setTimeout(() => {
 
-        guestbookForm.submit();
+      const blob =
+        new Blob(
+          [ics],
+          {
+            type:
+              "text/calendar"
+          }
+        );
 
-      }, 2200);
 
-    });
-  </script>
+      const url =
+        URL.createObjectURL(
+          blob
+        );
+
+
+      const link =
+        document.createElement(
+          "a"
+        );
+
+
+      link.href =
+        url;
+
+      link.download =
+        "mariage-elise-sadik.ics";
+
+      link.click();
+
+
+      URL.revokeObjectURL(
+        url
+      );
+
+    }
+  );
+
+
+
+/* ==================================
+   LIVRE D'OR
+================================== */
+
+const guestForm =
+  document.getElementById(
+    "guestForm"
+  );
+
+const guestbookShell =
+  document.getElementById(
+    "guestbookShell"
+  );
+
+const sendConfirmation =
+  document.getElementById(
+    "sendConfirmation"
+  );
+
+
+guestForm.addEventListener(
+  "submit",
+  event=>{
+
+    event.preventDefault();
+
+
+    guestbookShell.classList.add(
+      "sending"
+    );
+
+
+    setTimeout(
+      ()=>{
+
+        sendConfirmation.classList.add(
+          "visible"
+        );
+
+      },
+      900
+    );
+
+
+    setTimeout(
+      ()=>{
+
+        guestForm.submit();
+
+      },
+      1900
+    );
+
+  }
+);
+
+</script>
 
 </body>
 </html>
